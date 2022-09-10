@@ -1,0 +1,20 @@
+{
+    "client": "Thunder Client",
+    "environmentName": "configs",
+    "dateExported": "2022-09-10T22:25:26.368Z",
+    "version": "1.0",
+    "variables": [
+        {
+            "name": "URL",
+            "value": "http://localhost:3000"
+        },
+        {
+            "name": "TOKEN",
+            "value": "COLOQUE O TOKEM QUE VIR DE UM USUARIO LOGADO"
+        },
+        {
+            "name": "ID",
+            "value": "COLOQUE O ID DO USUARIO QUE LOGOU"
+        }
+    ]
+}

@@ -1,0 +1,85 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "api",
+    "dateExported": "2022-09-10T22:22:04.682Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "7915d4ea-7b62-48dc-8a04-0469eff603be",
+            "colId": "56966855-6244-4635-856c-8832a868e2c3",
+            "containerId": "",
+            "name": "/",
+            "url": "{{url}}/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2022-09-10T20:53:35.470Z",
+            "modified": "2022-09-10T20:55:02.285Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "f03adf25-539e-428d-abd4-81945fa5aa27",
+            "colId": "56966855-6244-4635-856c-8832a868e2c3",
+            "containerId": "",
+            "name": "/auth/register",
+            "url": "{{URL}}/auth/register",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2022-09-10T20:58:08.292Z",
+            "modified": "2022-09-10T22:15:38.996Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Edu-2\",\n  \"email\": \"Edu-2\",\n  \"password\": \"Edu-2\",\n  \"confirmpassword\": \"Edu-2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2e9654a5-cb51-4ade-848a-c4417d10ce9b",
+            "colId": "56966855-6244-4635-856c-8832a868e2c3",
+            "containerId": "",
+            "name": "/auth/login",
+            "url": "{{URL}}/auth/login",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2022-09-10T21:02:25.220Z",
+            "modified": "2022-09-10T22:15:47.507Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"Edu-2\",\n  \"password\": \"Edu-2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "22204afd-2d13-44de-a35b-195e590adaf2",
+            "colId": "56966855-6244-4635-856c-8832a868e2c3",
+            "containerId": "",
+            "name": "/user/:id",
+            "url": "{{URL}}/user/631d0c8a7d0f5173df1f20db",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2022-09-10T21:10:53.427Z",
+            "modified": "2022-09-10T22:20:57.647Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "{{TOKEN}}"
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{TOKEN}}",
+                "bearerPrefix": "{{TOKEN}}"
+            },
+            "tests": []
+        }
+    ]
+}
