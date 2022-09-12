@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const token = ""
+        const idUser = "" // ex: 631e92035a00f321dc3a1f33
+        
+        fetch(`http://localhost:3000/user/getUser/${idUser}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + token
+            }
+        })
+        .then(res => res.json())
+        .then(json => console.log(json))
+        .catch(err => console.log(err))
+    </script>
+</body>
+</html>

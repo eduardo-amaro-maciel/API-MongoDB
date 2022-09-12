@@ -1,36 +1,19 @@
 require('dotenv').config()
+const mongoose = require('mongoose')
+const User = require('./models/User')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const express = require('express')
+const cors = require('cors')
+
+const app = express()
+app.use(express.json())
+app.use(cors())
+
+const port = process.env.PORT
 const dbUser = process.env.DB_USER
 const dbPass = process.env.DB_PASS
 const dbURL = `mongodb+srv://${dbUser}:${dbPass}@cluster0.viiq9oo.mongodb.net/?retryWrites=true&w=majority`
-
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-
-const express = require('express')
-const app = express()
-
-app.use(express.json())
-
-const User = require('./models/User')
-
-app.get('/', (req, res)  => {
-    res.status(200).json({
-        "msg": "Bem vindo"
-    })
-})
-
-
-// rota privada
-app.get('/user/:id', checkToken, async (req, res) => {
-
-    const id = req.params.id
-    const user = await User.findById(id, '-password')
-
-    if (!user) { return res.status(404).json({ msg: 'Usuario não encontrado' }) }
-
-    res.status(200).json({ user })
-})
 
 
 function checkToken(req, res, next) {
@@ -49,6 +32,61 @@ function checkToken(req, res, next) {
         res.status(400).json({ msg: 'O token é invalido' })
     }
 }
+
+
+app.get('/', (req, res)  => {
+    res.status(200).json({ "msg": "Bem vindo" })
+})
+
+
+/* ROTA PRIVADA -> pegar usuario por id */
+app.get('/user/getUser/:id', checkToken, async (req, res) => {
+
+    const id = req.params.id
+    const user = await User.findById(id, '-password')
+
+    if (!user) { return res.status(404).json({ msg: 'Usuario não encontrado' }) }
+
+    res.status(200).json({ user })
+})
+
+
+/* ROTA PRIVADA -> deltar usuario por id */
+app.delete('/user/deleteUser/:id', checkToken, async (req, res) => {
+
+    const id = req.params.id
+
+    const user = await User.findById(id)
+
+    if (!user) { return res.status(404).json({ msg: 'Usuario não encontrado' }) }
+    
+    try {
+        await User.findByIdAndDelete(id)
+        res.status(200).json({ msg: 'Usuario deletado' })
+
+    } catch(err) {
+        res.status(500).json({ msg: err })
+    }
+})
+
+
+/* ROTA PRIVADA -> upadte usuario por id */
+app.put('/user/updateUser/:id', checkToken, async (req, res) => {
+
+    const id = req.params.id
+
+    const user = await User.findById(id)
+
+    if (!user) { return res.status(404).json({ msg: 'Usuario não encontrado' }) }
+    
+    try {
+        await User.findByIdAndUpdate(id, { name: 'atualizado' }) /* atualizar esta parte de update */
+        res.status(200).json({ msg: 'Usuario atualizado' })
+
+    } catch(err) {
+        res.status(500).json({ msg: err })
+    }
+})
 
 
 app.post('/auth/register', async (req, res) => {
@@ -111,6 +149,7 @@ app.post('/auth/login', async (req, res) => {
     }
 })
 
+
 mongoose.connect(dbURL)
     .then(() => {
         console.log('conectou')
@@ -119,4 +158,7 @@ mongoose.connect(dbURL)
         console.log(err)
     })
 
-app.listen(3000)
+
+app.listen(port || 3000, () => {
+    console.log(`Server rodando na porta ${ port }`)
+})
