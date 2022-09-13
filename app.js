@@ -51,6 +51,19 @@ app.get('/user/getUser/:id', checkToken, async (req, res) => {
 })
 
 
+/* ROTA PRIVADA -> pegar todos os usuarios */
+app.get('/user/getAllUsers', checkToken, async (req, res) => {
+
+    try {
+        const user = await User.find()
+        res.status(200).json({ user })
+        
+    } catch (err) {
+        return res.status(404).json({ msg: 'Nenhum usuario encontrado' })
+    }
+})
+
+
 /* ROTA PRIVADA -> deltar usuario por id */
 app.delete('/user/deleteUser/:id', checkToken, async (req, res) => {
 
