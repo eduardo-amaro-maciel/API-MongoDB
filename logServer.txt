@@ -1,0 +1,3 @@
+[17/8/2022 0-41-55] route :: ['/'] timestamp :: 1663386115637 | ip :: ffff:127.0.0.1 [User-Agent] :: Thunder Client (https://www.thunderclient.com)
+[17/8/2022 0-41-58] route :: ['/user/getUser/:id'] timestamp :: 1663386118288 | ip :: ffff:127.0.0.1 [User-Agent] :: Thunder Client (https://www.thunderclient.com)
+[17/8/2022 0-42-0] route :: ['/user/getAllUsers'] timestamp :: 1663386120605 | ip :: ffff:127.0.0.1 [User-Agent] :: Thunder Client (https://www.thunderclient.com)
